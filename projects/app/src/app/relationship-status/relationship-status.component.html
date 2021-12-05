@@ -1,0 +1,19 @@
+<mat-form-field>
+  <label>enter your name </label>
+  <input matInput type="text" [(ngModel)]="your_name" />
+</mat-form-field>
+<p>{{ your_name }}</p>
+<mat-form-field>
+  <label>enter your partner name </label>
+  <input matInput type="text" [(ngModel)]="partner_name" />
+</mat-form-field>
+
+<p>{{ partner_name }}</p>
+<button
+  type="button"
+  mat-button
+  class="btn btn-success"
+  (click)="find_percentage()"
+>
+  find perrcentage
+</button>

@@ -1,0 +1,170 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-1 margin">
+    <button
+      mat-button
+      type="button"
+      class="btn btn-success padding"
+      (click)="entering_create_mode()"
+    >
+      Add Users
+    </button>
+  </div>
+</div>
+<div class="row" *ngIf="!create_mode && !single_user_click_flag">
+  <div class="col-md-4" *ngFor="let user_data of face_data">
+    <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+      <div class="card p-4">
+        <div
+          class="
+            image
+            d-flex
+            flex-column
+            justify-content-center
+            align-items-center
+          "
+        >
+          <button class="btn btn-secondary">
+            <img [src]="user_data.picture" height="100" width="100" />
+          </button>
+          <span class="name mt-3">{{ user_data.name }}</span>
+          <div class="text mt-3">
+            <button
+              mat-button
+              type="button"
+              class="btn btn-success padding"
+              (click)="single_user_clicked(user_data)"
+            >
+              more info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="create_mode">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mt-4">
+      <form [formGroup]="user_information" (ngSubmit)="onSubmit()">
+        <table class="example-full-width" class="mat-elevation-z8">
+          <tr>
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Address</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="address"
+                  name="address"
+                  formControlName="address"
+                />
+              </mat-form-field>
+            </td>
+            &nbsp;
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>age</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="age"
+                  name="age"
+                  formControlName="age"
+                />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>cell</mat-label>
+                <input matInput type="text" formControlName="cell" />
+              </mat-form-field>
+            </td>
+            &nbsp;
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Gender</mat-label>
+                <input matInput type="text" formControlName="gender" />
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>email</mat-label>
+                <input matInput type="text" formControlName="email" />
+              </mat-form-field>
+            </td>
+            &nbsp;
+
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>name</mat-label>
+                <input matInput type="text" formControlName="name" />
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Picture</mat-label>
+                <input matInput type="text" formControlName="picture" />
+              </mat-form-field>
+            </td>
+            &nbsp;
+            <td>
+              <button mat-button type="submit" class="btn btn-success padding">
+                Submit
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-2 margin">
+      <button
+        mat-button
+        type="button"
+        class="btn btn-success padding"
+        (click)="out_of_create_mode()"
+      >
+        back to all users
+      </button>
+    </div>
+  </div>
+  <button
+    type="button"
+    mat-button
+    class="btn-success"
+    (click)="auto_fill_data()"
+  >
+    Auto fill
+  </button>
+</div>
+<app-single-user-data
+  *ngIf="single_user_click_flag"
+  [single_user_data]="single_user_data"
+>
+</app-single-user-data>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-4">
+    <button
+      mat-button
+      type="button"
+      class="btn btn-success padding"
+      *ngIf="single_user_click_flag"
+      (click)="single_user_back_button_clicked()"
+    >
+      back to all users
+    </button>
+  </div>
+</div>

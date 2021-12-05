@@ -1,0 +1,26 @@
+<div *ngIf="specific_subreddits">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let meme of specific_subreddits.memes">
+      <mat-card class="example-card mb-3">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ meme.author }}</mat-card-title>
+          <mat-card-subtitle>{{ meme.subreddit }}</mat-card-subtitle>
+
+          <a [href]="meme.postLink">
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </mat-card-header>
+        <img
+          mat-card-lg-image
+          [src]="meme.url"
+          alt="Photo of a Shiba Inu"
+          [ngStyle]=""
+        />
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div *ngIf="!specific_subreddits">
+  <app-server-error> </app-server-error>
+</div>
